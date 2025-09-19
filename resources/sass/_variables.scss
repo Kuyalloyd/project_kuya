@@ -1,7 +1,34 @@
-// Body
-$body-bg: #f8fafc;
+$primary: #007bff;
+$primary-dark: #0056b3;
+$secondary: #6c757d;
+$success: #27ae60;
+$warning: #f1c40f;
+$error: #e74c3c;
+$info: #17a2b8;
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+$light-bg: #f9f9f9;
+$dark-bg: #1e1e1e;
+
+$text-light: #f8f9fa;
+$text-dark: #333;
+$text-muted: #6c757d;
+
+// 🖼️ Layout
+$radius: 12px;
+$radius-lg: 20px;
+$radius-sm: 6px;
+
+// ⏱️ Animations
+$transition: all 0.25s ease;
+$transition-fast: all 0.15s ease;
+$transition-slow: all 0.4s ease;
+
+// 🔤 Typography
+$font-stack: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$heading-font: "Poppins", $font-stack;
+$base-font-size: 16px;
+
+// 🌟 Shadows
+$shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.15);

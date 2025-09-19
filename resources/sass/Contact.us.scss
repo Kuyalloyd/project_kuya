@@ -1,57 +1,136 @@
-.page-contact {
-  padding: 20px;
+@import "./variables";
+
+.contact-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: $radius;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   h2 {
-    color: #0077cc;
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: $primary;
   }
 
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  .contact-form {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
 
-    input, textarea, button {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+    input,
+    textarea {
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: $radius;
+      font-size: 1rem;
+      transition: border $transition;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+        box-shadow: 0 0 6px rgba($primary, 0.4);
+      }
     }
 
-    button {
-      background: #0077cc;
+    .btn-primary {
+      background: linear-gradient(135deg, $primary, $primary-dark);
       color: white;
+      padding: 0.8rem 1.2rem;
       border: none;
+      border-radius: $radius;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform $transition, background $transition;
 
       &:hover {
-        background: #005fa3;
+        background: linear-gradient(135deg, $primary-dark, darken($primary-dark, 10%));
+        transform: scale(1.05);
       }
     }
   }
 
-  .contact-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
+  .status {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
 
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
+  h3 {
+    margin-bottom: 1rem;
+    color: $text-dark;
+  }
+
+  .empty {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+  }
+
+  .contact-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .contact-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $light-bg;
+    padding: 1rem;
+    border-radius: $radius;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform $transition;
+
+    &:hover {
+      transform: translateY(-3px);
     }
 
-    th {
-      background: #0077cc;
-      color: white;
+    h4 {
+      margin: 0;
+      color: $primary-dark;
     }
 
-    tr:nth-child(even) {
-      background: #f9f9f9;
+    p {
+      margin: 0.3rem 0;
+      color: $text-dark;
     }
 
-    button {
-      margin-right: 5px;
-      padding: 5px 10px;
+    small {
+      color: #666;
+    }
+
+    .actions {
+      display: flex;
+      gap: 0.5rem;
+
+      .btn-edit {
+        background: $primary;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: $radius;
+        cursor: pointer;
+        transition: background $transition;
+
+        &:hover {
+          background: $primary-dark;
+        }
+      }
+
+      .btn-delete {
+        background: $error;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: $radius;
+        cursor: pointer;
+        transition: background $transition;
+
+        &:hover {
+          background: darken($error, 10%);
+        }
+      }
     }
   }
 }

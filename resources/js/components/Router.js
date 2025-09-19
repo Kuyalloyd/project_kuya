@@ -19,7 +19,7 @@ function Router() {
       <div className="content">
         {page === "login" && <Login setPage={setPage} setUser={setUser} />}
         {page === "signup" && <Signup setPage={setPage} />}
-        {page === "/Home" && user && <Home />}
+        {page === "/home" && user && <Home />}
         {page === "about" && user && <About />}
         {page === "contact" && user && <Contact />}
       </div>

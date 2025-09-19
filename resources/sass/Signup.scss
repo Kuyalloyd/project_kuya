@@ -1,61 +1,76 @@
+// sass/Signup.scss
+@use "./variables" as v;
+
 .auth-card {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  width: 100%;
-  max-width: 350px;
-  margin: 80px auto;
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #ef4aa5e0;
+  border-radius: v.$radius;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
+  animation: fadeInUp 0.6s ease;
 
   h2 {
-    margin-bottom: 15px;
-    font-size: 22px;
-    color: #222;
+    margin-bottom: 1.5rem;
+    color: v.$primary-dark;
   }
 
-  input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
+  form {
+    display: grid;
+    gap: 1rem;
 
-    &:focus {
-      border-color: #007bff;
-      box-shadow: 0 0 3px rgba(0, 123, 255, 0.4);
-      outline: none;
+    input {
+      padding: 0.9rem;
+      border: 1px solid #e7e7e7;
+      border-radius: v.$radius;
+      transition: border v.$transition, box-shadow v.$transition;
+
+      &:focus {
+        border-color: v.$primary;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.278);
+        outline: none;
+      }
     }
-  }
 
-  button {
-    width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 10px;
+    button {
+      background: linear-gradient(135deg, v.$primary, v.$primary-dark);
+      padding: 0.9rem;
+      border: none;
+      border-radius: v.$radius;
+      color: #ffffff;
+      cursor: pointer;
+      transition: transform v.$transition;
 
-    &:hover {
-      background: #0056b3;
+      &:hover {
+        transform: scale(1.05);
+      }
     }
-  }
-
-  .status {
-    margin-top: 10px;
-    font-size: 14px;
   }
 
   .link {
-    color: #007bff;
+    color: v.$primary;
     cursor: pointer;
+    font-weight: 500;
 
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  .status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

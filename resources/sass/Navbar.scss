@@ -1,27 +1,37 @@
+// sass/Navbar.scss
+@use "sass:color";
+@use "./variables" as v;
+
 .navbar {
-  background: #0077cc;
-  color: white;
-  padding: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem 2rem;
+  background: v.$primary;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
   .logo {
+    font-size: 1.5rem;
     font-weight: bold;
-    font-size: 20px;
+    letter-spacing: 1px;
   }
 
   ul {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
 
     li {
       cursor: pointer;
-      transition: 0.3s;
+      font-size: 1rem;
+      transition: color v.$transition, transform v.$transition;
+
       &:hover {
-        text-decoration: underline;
-        color: #ffd700;
+        color: v.$success;
+        transform: translateY(-2px);
       }
     }
   }

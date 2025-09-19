@@ -1,13 +1,80 @@
-.page-home {
-  padding: 20px;
+@import "./variables";
+
+.home {
+  padding: 2rem;
   text-align: center;
 
-  h2 {
-    color: #0077cc;
+  .hero {
+    margin: 3rem 0;
+
+    h1 {
+      font-size: 2.8rem;
+      color: $primary;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      color: $text-dark;
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+
+      button {
+        padding: 0.9rem 1.5rem;
+        border-radius: $radius;
+        background: linear-gradient(135deg, $primary, $primary-dark);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background $transition, transform $transition;
+
+        &:hover {
+          background: linear-gradient(
+            135deg,
+            $primary-dark,
+            darken($primary-dark, 10%)
+          );
+          transform: scale(1.05);
+        }
+      }
+    }
   }
 
-  p {
-    font-size: 18px;
-    color: #555;
+  .features {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+
+    .feature-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: $radius;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      flex: 1 1 250px;
+      transition: transform $transition;
+
+      &:hover {
+        transform: translateY(-8px);
+      }
+
+      h3 {
+        color: $primary-dark;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: $text-dark;
+        font-size: 1rem;
+      }
+    }
   }
 }

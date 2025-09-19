@@ -9,7 +9,8 @@ class Signup extends Model
 {
     use HasFactory;
 
-    protected $table = 'signup'; // ✅ points to your signup table
+    // ✅ match your migration
+    protected $table = 'signup';
 
     protected $fillable = [
         'name',

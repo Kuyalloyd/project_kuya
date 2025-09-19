@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "../../sass/Signup.scss";
 
-
 function Signup({ setPage, setUser }) {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [status, setStatus] = useState("");
+  const [errors, setErrors] = useState({}); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -18,16 +18,27 @@ function Signup({ setPage, setUser }) {
         body: JSON.stringify(form),
       });
 
-      if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData.message || "Signup failed");
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error(`Server returned non-JSON: ${text.substring(0, 100)}`);
       }
 
-      const data = await res.json();
+      if (!res.ok) {
+        // ✅ show Laravel validation errors
+        if (data.errors) {
+          setErrors(data.errors);
+        }
+        throw new Error(data.message || "Signup failed");
+      }
+
       console.log("✅ User registered:", data);
 
       setStatus("✅ Account created! Redirecting...");
       setForm({ name: "", email: "", password: "" });
+      setErrors({});
 
       setTimeout(() => {
         setPage("login");
@@ -55,6 +66,8 @@ function Signup({ setPage, setUser }) {
           onChange={handleChange}
           required
         />
+        {errors.name && <p className="error">{errors.name[0]}</p>}
+
         <input
           type="email"
           name="email"
@@ -63,6 +76,8 @@ function Signup({ setPage, setUser }) {
           onChange={handleChange}
           required
         />
+        {errors.email && <p className="error">{errors.email[0]}</p>}
+
         <input
           type="password"
           name="password"
@@ -71,8 +86,11 @@ function Signup({ setPage, setUser }) {
           onChange={handleChange}
           required
         />
+        {errors.password && <p className="error">{errors.password[0]}</p>}
+
         <button type="submit">Sign Up</button>
       </form>
+
       <p className="status">{status}</p>
       <p>
         Already have an account?{" "}

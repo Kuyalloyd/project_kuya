@@ -1,41 +1,76 @@
-.page-login {
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// sass/Signup.scss
+@use "./variables" as v;
 
-  .login-box {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    width: 300px;
+.auth-card {
+  max-width: 400px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #966aff;
+  border-radius: v.$radius;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  animation: fadeInUp 0.6s ease;
 
-    h2 {
-      text-align: center;
-      color: #0077cc;
-    }
+  h2 {
+    margin-bottom: 1.5rem;
+    color: v.$primary-dark;
+  }
 
-    .form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+  form {
+    display: grid;
+    gap: 1rem;
 
-      input, button {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-      }
+    input {
+      padding: 0.9rem;
+      border: 1px solid #ddd;
+      border-radius: v.$radius;
+      transition: border v.$transition, box-shadow v.$transition;
 
-      button {
-        background: #0077cc;
-        color: white;
-        cursor: pointer;
-
-        &:hover {
-          background: #005fa3;
-        }
+      &:focus {
+        border-color: v.$primary;
+        box-shadow: 0 0 5px rgba(247, 55, 202, 0.3);
+        outline: none;
       }
     }
+
+    button {
+      background: linear-gradient(135deg, v.$primary, v.$primary-dark);
+      padding: 0.9rem;
+      border: none;
+      border-radius: v.$radius;
+      color: #fff;
+      cursor: pointer;
+      transition: transform v.$transition;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .link {
+    color: v.$primary;
+    cursor: pointer;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

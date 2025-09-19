@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../sass/Contact.us.scss";
 
-
 function Contact() {
   const API_URL = "http://127.0.0.1:8000/api/contacts";
 
@@ -10,7 +9,6 @@ function Contact() {
   const [editingId, setEditingId] = useState(null);
   const [status, setStatus] = useState("");
 
-  // Fetch contacts on page load
   useEffect(() => {
     fetchContacts();
   }, []);
@@ -46,13 +44,13 @@ function Contact() {
 
       if (!response.ok) throw new Error(data.message || "Error saving contact");
 
-      setStatus(editingId ? "Contact updated!" : "Contact added!");
+      setStatus(editingId ? "✅ Contact updated!" : "✅ Contact added!");
       setForm({ name: "", email: "", message: "" });
       setEditingId(null);
       fetchContacts();
     } catch (error) {
       console.error("Error:", error);
-      setStatus("Error: " + error.message);
+      setStatus("❌ " + error.message);
     }
   };
 
@@ -70,7 +68,7 @@ function Contact() {
 
     try {
       await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-      setStatus("Contact deleted!");
+      setStatus("🗑️ Contact deleted!");
       fetchContacts();
     } catch (error) {
       console.error("Error deleting:", error);
@@ -78,77 +76,66 @@ function Contact() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Contact Manager</h2>
+    <div className="contact-page">
+      <h2>📇 Contact Manager</h2>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
+      <form className="contact-form" onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder="Full Name"
           value={form.name}
           onChange={handleChange}
           required
-        />{" "}
-        <br />
+        />
         <input
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder="Email Address"
           value={form.email}
           onChange={handleChange}
           required
-        />{" "}
-        <br />
+        />
         <textarea
           name="message"
           placeholder="Message"
           value={form.message}
           onChange={handleChange}
           required
-        />{" "}
-        <br />
-        <button type="submit">{editingId ? "Update" : "Add"} Contact</button>
+        />
+        <button type="submit" className="btn-primary">
+          {editingId ? "💾 Update Contact" : "➕ Add Contact"}
+        </button>
       </form>
 
-      {status && <p>{status}</p>}
+      {status && <p className="status">{status}</p>}
 
       {/* Contact List */}
       <h3>All Contacts</h3>
-      <table
-        border="1"
-        cellPadding="8"
-        style={{ borderCollapse: "collapse", width: "100%" }}
-      >
-        <thead>
-          <tr style={{ backgroundColor: "#f0f0f0" }}>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Message</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {contacts.length > 0 ? (
-            contacts.map((c) => (
-              <tr key={c.id}>
-                <td>{c.name}</td>
-                <td>{c.email}</td>
-                <td>{c.message}</td>
-                <td>
-                  <button onClick={() => handleEdit(c)}>Edit</button>{" "}
-                  <button onClick={() => handleDelete(c.id)}>Delete</button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="4">No contacts found.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <div className="contact-list">
+        {contacts.length > 0 ? (
+          contacts.map((c) => (
+            <div key={c.id} className="contact-card">
+              <div className="info">
+                <h4>{c.name}</h4>
+                <p>{c.email}</p>
+                <small>{c.message}</small>
+              </div>
+              <div className="actions">
+                <button className="btn-edit" onClick={() => handleEdit(c)}>
+                  ✏️ Edit
+                </button>
+                <button className="btn-delete" onClick={() => handleDelete(c.id)}>
+                  🗑️ Delete
+                </button>
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="empty">No contacts found. Add one above!</p>
+        )}
+      </div>
     </div>
   );
 }
